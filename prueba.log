@@ -1,0 +1,25 @@
+# = Caracter
+include = Identificador
+< = OperadorRelacional
+stdio = Identificador
+. = Caracter
+h = Identificador
+> = OperadorRelacional
+# = Caracter
+include = Identificador
+< = OperadorRelacional
+math = Identificador
+. = Caracter
+h = Identificador
+> = OperadorRelacional
+# = Caracter
+include = Identificador
+< = OperadorRelacional
+stdio = Identificador
+> = OperadorRelacional
+# = Caracter
+include = Identificador
+< = OperadorRelacional
+math = Identificador
+char = tipoDatos
+Error Sintaxis: Se espera un >5
