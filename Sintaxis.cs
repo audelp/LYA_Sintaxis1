@@ -24,7 +24,7 @@ namespace LYA1_Sintaxis1
             else
             {
                 
-                throw new Error("Sintaxis: Se espera un "+espera+linea,log);
+                throw new Error("Sintaxis: Se espera un "+espera+" en la linea "+linea,log);
             }
         }
         public void match(Tipos espera)
@@ -35,7 +35,7 @@ namespace LYA1_Sintaxis1
             }
             else
             {
-                throw new Error("Sintaxis: Se espera un "+espera+linea,log);
+                throw new Error("Sintaxis: Se espera un "+espera+" En la linea "+linea,log);
             }
         }
     }

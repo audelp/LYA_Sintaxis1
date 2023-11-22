@@ -177,8 +177,6 @@ namespace LYA1_Sintaxis1
                     if (c == '\n')
                     {
                         linea += 1;
-                        Console.WriteLine(linea);
-
                     }
                     archivo.Read();
 
@@ -198,12 +196,12 @@ namespace LYA1_Sintaxis1
             {
                 if (getClasificacion() == Tipos.Numero)
                 {
-                    throw new Error("Lexico: Se espera un digito" + linea, log);
+                    throw new Error("Lexico: Se espera un digito en la linea " + linea, log);
                 }
                 else if (getClasificacion() == Tipos.Cadena)
                 {
 
-                    throw new Error("Lexico: Se espera un \"" + linea, log);
+                    throw new Error("Lexico: Se espera un \" en la linea " + linea, log);
                 }
             }
             else

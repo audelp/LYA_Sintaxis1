@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 /*
-    Requerimiento 5: Indicar el número de linea de los errores
-*/
+  */
 
 namespace LYA1_Sintaxis1
 {
@@ -128,7 +129,7 @@ namespace LYA1_Sintaxis1
             match("printf");
             match("(");
             match(Tipos.Cadena);
-            if(getContenido()==",")
+            if (getContenido() == ",")
             {
                 match(",");
                 match(Tipos.Identificador);
@@ -155,14 +156,13 @@ namespace LYA1_Sintaxis1
         private void Asignacion()
         {
             match(Tipos.Identificador);
-            if (getClasificacion() == Tipos.OperadorTermino)
-            {
-                match(Tipos.OperadorTermino);
-            }
-            else if (getClasificacion() == Tipos.IncrementoTermino)
+
+
+            if (getClasificacion() == Tipos.IncrementoTermino)
             {
                 match(Tipos.IncrementoTermino);
-                Expresion();
+                if (getContenido() != ";")
+                    Expresion();
             }
             else if (getClasificacion() == Tipos.IncrementoFactor)
             {
@@ -194,12 +194,13 @@ namespace LYA1_Sintaxis1
             {
                 Instruccion();
             }
-            if(getContenido() == "else"){
+            if (getContenido() == "else")
+            {
                 match("else");
                 if (getContenido() == "{")
-                    {
-                        bloqueInstrucciones();
-                    }
+                {
+                    bloqueInstrucciones();
+                }
                 else
                 {
                     Instruccion();
@@ -216,22 +217,55 @@ namespace LYA1_Sintaxis1
         //While -> while(Condicion) bloque de instrucciones | instruccion
         private void While()
         {
+            match("while");
+            match("(");
+            Condicion();
+            match(")");
+            if (getContenido() == "{")
+            {
+                bloqueInstrucciones();
+            }
+            else
+                Instruccion();
 
         }
-        //Do -> do bloque de instrucciones | intruccion while(Condicion)
+        //Do -> do bloque de instrucciones | intruccion while(Condicion) ;
         private void Do()
         {
+            match("do");
+            bloqueInstrucciones();
+            match("while");
+            match("(");
+            Condicion();
+            match(")");
+            match(";");
 
         }
         //For -> for(Asignacion Condicion; Incremento) Bloque de instruccones | Intruccion 
         private void For()
         {
-
+            match("for");
+            match("(");
+            Asignacion();
+            Condicion();
+            match(";");
+            Incremento();
+            match(")");
+            if (getContenido() == "{")
+            {
+                bloqueInstrucciones();
+            }
+            else
+                Instruccion();
         }
         //Incremento -> Identificador ++ | --
         private void Incremento()
         {
-
+            match(Tipos.Identificador);
+            if(getContenido()=="++")
+                match("++");
+            else 
+                match("--");
         }
         //Main      -> void main() bloqueInstrucciones
         private void Main()
